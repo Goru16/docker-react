@@ -1,0 +1,11 @@
+sudo: required // super user permission to execute
+services:
+  - docker    // install docker 
+
+//to build our docker image before test runs
+before_install:
+  - docker -t Goru16/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true Goru16/docker-react npm run test
+  //- docker run Goru16/docker-react npm run test -- --covereage
